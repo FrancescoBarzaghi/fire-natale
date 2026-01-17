@@ -8,7 +8,7 @@ export const routes: Routes = [
 //sintassi di authGuard
 { path: 'home', component: Home,
 canActivate: [authGuard] },
-{ path: 'login', component: Login },
-{ path: 'register', component: Register },
-{ path: '', redirectTo: 'login', pathMatch: 'full' },
+{ path: 'auth/login', component: Login },
+{ path: 'auth/register', component: Register },
+{ path: '', redirectTo: 'auth/login', pathMatch: 'full' },
 ];

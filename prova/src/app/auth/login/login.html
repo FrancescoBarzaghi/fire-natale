@@ -1,13 +1,29 @@
-<h2>Login</h2>
+<app-auth-card title="Accedi">
+  <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="email"
+      required
+      placeholder="es. nome@esempio.com"
+    />
 
-<label>Email:</label>
-<input [(ngModel)]="email" type="email" />
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      [(ngModel)]="password"
+      required
+      placeholder="Inserisci la password"
+    />
 
-<label>Password:</label>
-<input [(ngModel)]="password" type="password" />
+    <button type="submit" [disabled]="loginForm.invalid">Accedi</button>
 
-<button (click)="login()">Accedi</button>
-
-<p style="color: red" *ngIf="errorMessage">{{ errorMessage }}</p>
-
-<p>Non hai un account? <a routerLink="/register">Registrati</a></p>
+    <p>
+      Non hai un account? <a routerLink="/auth/register">Registrati</a>
+    </p>
+  </form>
+</app-auth-card>

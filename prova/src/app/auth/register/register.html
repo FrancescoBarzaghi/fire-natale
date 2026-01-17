@@ -1,17 +1,29 @@
-<h2>Registrazione</h2>
+<app-auth-card title="Crea un account">
+  <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
+    <label for="email">Email</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="email"
+      required
+      placeholder="es. nome@esempio.com"
+    />
 
-<div>
-  <label>Email:</label>
-  <input type="email" [(ngModel)]="email">
-</div>
+    <label for="password">Password</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      [(ngModel)]="password"
+      required
+      placeholder="Inserisci la password"
+    />
 
-<div>
-  <label>Password:</label>
-  <input type="password" [(ngModel)]="password">
-</div>
+    <button type="submit" [disabled]="registerForm.invalid">Registrati</button>
 
-<button (click)="register()">Registrati</button>
-
-<p style="color:red" *ngIf="errorMessage">{{ errorMessage }}</p>
-
-<p>Hai già un account? <a routerLink="/login">Accedi</a></p>
+    <p>
+      Hai già un account? <a routerLink="/auth/login">Accedi</a>
+    </p>
+  </form>
+</app-auth-card>

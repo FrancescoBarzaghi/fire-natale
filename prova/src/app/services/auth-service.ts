@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, User } from '@angular/fire/auth';
 import { BehaviorSubject } from 'rxjs';
 
@@ -11,12 +11,16 @@ export class AuthService {
 private currentUserSubject = new BehaviorSubject<User | null>(null);
 //Observable che altri componenti possono "ascoltare".
 currentUser$ = this.currentUserSubject.asObservable();
-constructor(private auth: Auth) {
+constructor(private auth: Auth, private ngZone: NgZone) {
 //onAuthStateChanged ascolta i cambiamenti di login/logout.
 //viene chiamato automaticamente quando un utente fa login, logout
 //o quando la pagina viene ricaricata e Firebase ripristina la sessione.
+this.ngZone.runOutsideAngular(() => {
 onAuthStateChanged(this.auth, (user) => {
+this.ngZone.run(() => {
 this.currentUserSubject.next(user);
+});
+});
 });
 }
 //registrazione di un nuovo utente con email e password.
