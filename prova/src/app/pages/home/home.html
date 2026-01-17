@@ -1,6 +1,60 @@
-<h2>Home</h2>
+<header class="header-container" [class.scrolled]="isScrolled">
+  <nav class="floating-nav">
+    <!-- Logo -->
+    <div class="navbar-brand-container">
+      <img src="assets/logo.png" class="logo-img" alt="Logo">
+    </div>
 
-<p *ngIf="email">
-  Ciao, {{ email }}!
-</p>
+    <!-- Link centrali desktop -->
+    <ul class="nav-links-center">
+      <li><a class="nav-link" (click)="scrollToSection('home')">Home</a></li>
+      <li><a class="nav-link" (click)="scrollToSection('about')">About Us</a></li>
+      <li><a class="nav-link" (click)="scrollToSection('services')">Services</a></li>
+      <li><a class="nav-link" (click)="scrollToSection('featured')">Featured</a></li>
+      <li><a class="nav-link" (click)="scrollToSection('contact')">Contact Me</a></li>
+    </ul>
 
+    <!-- Icone + username + pulsante Menu mobile -->
+    <div class="nav-icons-right">
+      <i class="bi bi-search"></i>
+      <i class="bi bi-person"></i>
+      <span class="user-name" *ngIf="username">{{ username }}</span>
+
+      <!-- Pulsante menu mobile -->
+      <button class="hamburger" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
+        <i class="bi bi-list"></i> Menu
+      </button>
+    </div>
+  </nav>
+
+  <!-- Overlay mobile -->
+  <div class="mobile-overlay" *ngIf="mobileMenuOpen" (click)="toggleMobileMenu()"></div>
+
+  <!-- Menu mobile dropdown -->
+  <ul class="mobile-nav-links" [class.active]="mobileMenuOpen">
+    <li><a class="nav-link" (click)="scrollToSection('home')">Home</a></li>
+    <li><a class="nav-link" (click)="scrollToSection('about')">About Us</a></li>
+    <li><a class="nav-link" (click)="scrollToSection('services')">Services</a></li>
+    <li><a class="nav-link" (click)="scrollToSection('featured')">Featured</a></li>
+    <li><a class="nav-link" (click)="scrollToSection('contact')">Contact Me</a></li>
+  </ul>
+</header>
+
+<div class="content-wrapper">
+
+  <!-- Card immagine + testo -->
+  <div class="info-card">
+    <div class="card-image">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800" alt="Immagine descrittiva">
+    </div>
+    <div class="card-text">
+      <h2>Titolo della Sezione</h2>
+      <p>
+        Questo è un esempio di testo a destra dell'immagine. Puoi inserire qui tutte le informazioni 
+        che vuoi presentare agli utenti. Il layout è responsive e il contenuto si adatta allo schermo.
+      </p>
+      <button class="card-button">Scopri di più</button>
+    </div>
+  </div>
+
+</div>
