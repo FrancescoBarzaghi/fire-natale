@@ -5,15 +5,9 @@
     </div>
 
     <ul class="nav-links-center">
-      <li>
-        <a class="nav-link" (click)="scrollToSection('home')">Home</a>
-      </li>
-      <li>
-        <a class="nav-link" (click)="goToCatalogo()">Catalogo</a>
-      </li>
-      <li>
-        <a class="nav-link" (click)="scrollToSection('prenota')">Prenota</a>
-      </li>
+      <li><a class="nav-link" (click)="goToHome()">Home</a></li>
+      <li><a class="nav-link" (click)="goToCatalogo()">Catalogo</a></li>
+      <li><a class="nav-link" (click)="goToPrenota()">Prenota</a></li>
     </ul>
 
     <div class="nav-icons-right">
@@ -29,15 +23,9 @@
   <div class="mobile-overlay" *ngIf="mobileMenuOpen" (click)="toggleMobileMenu()"></div>
 
   <ul class="mobile-nav-links" [class.active]="mobileMenuOpen">
-    <li>
-      <a class="nav-link" (click)="scrollToSection('home')">Home</a>
-    </li>
-    <li>
-      <a class="nav-link" (click)="goToCatalogo()">Catalogo</a>
-    </li>
-    <li>
-      <a class="nav-link" (click)="scrollToSection('prenota')">prenota Me</a>
-    </li>
+    <li><a class="nav-link" (click)="goToHome()">Home</a></li>
+    <li><a class="nav-link" (click)="goToCatalogo()">Catalogo</a></li>
+    <li><a class="nav-link" (click)="goToPrenota()">Prenota</a></li>
   </ul>
 </header>
 

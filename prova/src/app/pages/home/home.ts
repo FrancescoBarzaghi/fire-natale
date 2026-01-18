@@ -35,12 +35,6 @@ export class Home implements OnInit {
   toggleMobileMenu() {
     this.mobileMenuOpen = !this.mobileMenuOpen;
   }
-
-  goToCatalogo() {
-    this.mobileMenuOpen = false;
-    this.router.navigate(['/catalogo']);
-  }
-
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 50;
@@ -52,5 +46,19 @@ export class Home implements OnInit {
       element.scrollIntoView({ behavior: 'smooth' });
       if (this.mobileMenuOpen) this.toggleMobileMenu();
     }
+  }
+  goToHome() {
+  if (this.mobileMenuOpen) this.toggleMobileMenu();
+  this.router.navigate(['/home']);
+  }
+
+  goToCatalogo() {
+    if (this.mobileMenuOpen) this.toggleMobileMenu();
+    this.router.navigate(['/catalogo']);
+  }
+
+  goToPrenota() {
+    if (this.mobileMenuOpen) this.toggleMobileMenu();
+    this.router.navigate(['/prenota']);
   }
 }

@@ -1,1 +1,61 @@
-<p>prenota works!</p>
+<header class="header-container" [class.scrolled]="isScrolled">
+  <nav class="floating-nav">
+    <ul class="nav-links-center">
+      <li><a class="nav-link" (click)="goToHome()">Home</a></li>
+      <li><a class="nav-link" (click)="goToCatalogo()">Catalogo</a></li>
+      <li><a class="nav-link" (click)="goToPrenota()">Prenota</a></li>
+    </ul>
+
+    <div class="nav-icons-right">
+      <i class="bi bi-person"></i>
+      <span class="user-name" *ngIf="username">{{ username }}</span>
+      <button class="hamburger" (click)="toggleMobileMenu()">
+        <i class="bi" [ngClass]="mobileMenuOpen ? 'bi-x-lg' : 'bi-list'"></i>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-overlay" *ngIf="mobileMenuOpen" (click)="toggleMobileMenu()"></div>
+
+  <ul class="mobile-nav-links" [class.active]="mobileMenuOpen">
+    <li><a class="nav-link" (click)="goToHome()">Home</a></li>
+    <li><a class="nav-link" (click)="goToCatalogo()">Catalogo</a></li>
+    <li><a class="nav-link" (click)="goToPrenota()">Prenota</a></li>
+  </ul>
+</header>
+
+<!-- Container principale stile Home / Glass card -->
+<main class="home-container prenota-container">
+  <div class="home-wrapper">
+    <div class="glass-card">
+      <i class="bi bi-calendar2-check-fill icon-header"></i>
+      <h2>Prenota una consulenza</h2>
+      <p>Seleziona una data e conferma per prenotare con il nostro team di esperti.</p>
+
+      <div class="form-group">
+        <label for="data">Seleziona data:</label>
+        <input id="data" type="date" class="date-picker" [(ngModel)]="dataScelta">
+      </div>
+
+      <button class="btn-submit" (click)="confermaPrenotazione()">Conferma Prenotazione</button>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-text">HOME <span class="fire">ELEMENTS</span></span>
+      <p class="tagline">L'eccellenza del design, a casa tua.</p>
+    </div>
+    <div class="footer-socials">
+      <a href="#"><i class="bi bi-instagram"></i></a>
+      <a href="#"><i class="bi bi-facebook"></i></a>
+      <a href="#"><i class="bi bi-whatsapp"></i></a>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 NataleFire Design. Tutti i diritti riservati.</p>
+    </div>
+  </div>
+</footer>

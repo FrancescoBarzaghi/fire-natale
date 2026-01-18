@@ -4,6 +4,7 @@ import { Login } from './auth/login/login';
 import { Register } from './auth/register/register';
 import { Home } from './pages/home/home';
 import { Catalogo } from './pages/catalogo/catalogo';
+import { Prenota } from './pages/prenota/prenota'; // <--- MODIFICATO: Deve puntare al file esatto e usare il nome Prenota
 
 export const routes: Routes = [
   {
@@ -14,6 +15,11 @@ export const routes: Routes = [
   {
     path: 'catalogo',
     component: Catalogo,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'prenota',
+    component: Prenota,
     canActivate: [authGuard],
   },
   {

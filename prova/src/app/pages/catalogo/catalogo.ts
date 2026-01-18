@@ -51,15 +51,20 @@ export class Catalogo implements OnInit {
   }
 
   // Vai alla Home page reale
-  goToHome() {
-    this.router.navigate(['/home']); 
-  }
-
-  goToCatalogo() {
-    this.scrollToSection('catalogo');
-  }
-  prenota() {
-  alert('Hai cliccato su Prenota!');
-  // Qui puoi aggiungere logica reale, es. navigazione a pagina prenotazioni
+ goToHome() {
+  if (this.mobileMenuOpen) this.toggleMobileMenu();
+  this.router.navigate(['/home']);
 }
+
+goToCatalogo() {
+  if (this.mobileMenuOpen) this.toggleMobileMenu();
+  this.router.navigate(['/catalogo']);
+}
+
+goToPrenota() {
+  if (this.mobileMenuOpen) this.toggleMobileMenu();
+  this.router.navigate(['/prenota']);
+  
+}
+
 }

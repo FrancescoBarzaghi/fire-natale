@@ -5,8 +5,8 @@
     <nav class="floating-nav">
       <ul class="nav-links-center">
         <li><a class="nav-link" (click)="goToHome()">Home</a></li>
-        <li><a class="nav-link" (click)="scrollToSection('catalogo')">Catalogo</a></li>
-        <li><a class="nav-link" (click)="scrollToSection('prenota')">Prenota</a></li>
+        <li><a class="nav-link" (click)="goToCatalogo()">Catalogo</a></li>
+        <li><a class="nav-link" (click)="goToPrenota()">Prenota</a></li>
       </ul>
 
       <div class="nav-icons-right">
@@ -22,8 +22,8 @@
 
     <ul class="mobile-nav-links" [class.active]="mobileMenuOpen">
       <li><a class="nav-link" (click)="goToHome()">Home</a></li>
-      <li><a class="nav-link" (click)="scrollToSection('catalogo')">Catalogo</a></li>
-      <li><a class="nav-link" (click)="scrollToSection('prenota')">prenota Me</a></li>
+      <li><a class="nav-link" (click)="goToCatalogo()">Catalogo</a></li>
+      <li><a class="nav-link" (click)="goToPrenota()">Prenota</a></li>
     </ul>
   </header>
 
@@ -58,7 +58,7 @@
           <h2 class="right-text">Prenota una consulenza con noi</h2>
           <h2 class="right-text">un team di esperti sarà a sua disposizione.</h2>
 
-          <button class="btn-prenota" (click)="prenota()">Prenota</button>
+          <button class="btn-prenota" (click)="goToPrenota()">Prenota</button>
         </div>
       </div>
 
