@@ -1,41 +1,85 @@
-<h1>Catalogo</h1>
+<div class="catalogo-wrapper">
 
-<div class="product-grid"
-     *ngIf="prodotti$ | async as prodotti; else loading">
+  <!-- Navbar -->
+  <header class="header-container" [class.scrolled]="isScrolled">
+    <nav class="floating-nav">
+      <ul class="nav-links-center">
+        <li><a class="nav-link" (click)="goToHome()">Home</a></li>
+        <li><a class="nav-link" (click)="scrollToSection('catalogo')">Catalogo</a></li>
+        <li><a class="nav-link" (click)="scrollToSection('prenota')">Prenota</a></li>
+      </ul>
 
-  <div class="product-card" *ngFor="let prodotto of prodotti">
-    <img
-      [src]="prodotto.immagine"
-      [alt]="prodotto.nome"
-    >
+      <div class="nav-icons-right">
+        <i class="bi bi-person"></i>
+        <span class="user-name" *ngIf="username">{{ username }}</span>
+        <button class="hamburger" (click)="toggleMobileMenu()">
+          <i class="bi" [ngClass]="mobileMenuOpen ? 'bi-x-lg' : 'bi-list'"></i>
+        </button>
+      </div>
+    </nav>
 
-    <h3>{{ prodotto.nome }}</h3>
-    <p>{{ prodotto.prezzo | currency:'EUR' }}</p>
-  </div>
+    <div class="mobile-overlay" *ngIf="mobileMenuOpen" (click)="toggleMobileMenu()"></div>
 
+    <ul class="mobile-nav-links" [class.active]="mobileMenuOpen">
+      <li><a class="nav-link" (click)="goToHome()">Home</a></li>
+      <li><a class="nav-link" (click)="scrollToSection('catalogo')">Catalogo</a></li>
+      <li><a class="nav-link" (click)="scrollToSection('prenota')">prenota Me</a></li>
+    </ul>
+  </header>
+
+  <!-- Sezione Catalogo -->
+  <section id="catalogo">
+    <div class="catalogo-row">
+
+      <!-- Container sinistro (2/3) -->
+      <div class="catalogo-left">
+        <h2>Prodotti principali</h2>
+        <div class="product-grid">
+          <div class="product-card" *ngFor="let prodotto of prodotti$ | async">
+            <div class="product-image">
+              <img [src]="prodotto.immagine" [alt]="prodotto.nome">
+            </div>
+            <div class="product-info">
+              <h3>{{ prodotto.nome }}</h3>
+              <p class="price">{{ prodotto.prezzo | currency:'EUR' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Container destro (1/3) -->
+      <!-- Container destro (1/3) -->
+      <div class="catalogo-right">
+        <h2>Servizio in evidenza</h2>
+
+        <div class="right-content">
+          <img src="https://www.torzonicostruzioni.com/wp-content/uploads/2025/03/Consulenza-darredo.png" alt="Servizio" class="right-image">
+
+          <h2 class="right-text">Prenota una consulenza con noi</h2>
+          <h2 class="right-text">un team di esperti sarà a sua disposizione.</h2>
+
+          <button class="btn-prenota" (click)="prenota()">Prenota</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer" id="prenota">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-text">HOME <span class="fire">ELEMENTS</span></span>
+        <p class="tagline">L'eccellenza del design, a casa tua.</p>
+      </div>
+      <div class="footer-socials">
+        <a href="#"><i class="bi bi-instagram"></i></a>
+        <a href="#"><i class="bi bi-facebook"></i></a>
+        <a href="#"><i class="bi bi-whatsapp"></i></a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 NataleFire Design. Tutti i diritti riservati.</p>
+      </div>
+    </div>
+  </footer>
 </div>
-
-<ng-template #loading>
-  <p>Caricamento prodotti...</p>
-</ng-template>
-<!-- FOOTER -->
-<footer class="site-footer" id="contact">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <span class="logo-text">
-        HOME <span class="fire">ELEMENTS</span>
-      </span>
-      <p class="tagline">L'eccellenza del design, a casa tua.</p>
-    </div>
-
-    <div class="footer-socials">
-      <a href="#"><i class="bi bi-instagram"></i></a>
-      <a href="#"><i class="bi bi-facebook"></i></a>
-      <a href="#"><i class="bi bi-whatsapp"></i></a>
-    </div>
-
-    <div class="footer-bottom">
-      <p>&copy; 2026 NataleFire Design. Tutti i diritti riservati.</p>
-    </div>
-  </div>
-</footer>

@@ -1,7 +1,8 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 export interface Prodotto {
   id: string;
@@ -17,39 +18,48 @@ export interface Prodotto {
   templateUrl: './catalogo.html',
   styleUrls: ['./catalogo.css'],
 })
-export class Catalogo {
+export class Catalogo implements OnInit {
 
   prodotti$: Observable<Prodotto[]>;
 
-  // LOGICA NAVBAR
-  mobileMenuOpen = false;
-  isScrolled = false;
-  username = 'Utente'; // opzionale, se vuoi mostrare il nome
+  // --- Navbar & UI ---
+  mobileMenuOpen = false;        
+  isScrolled = false;            
+  username: string | null = 'Utente'; 
 
-  constructor(private firestore: Firestore) {
+  constructor(private firestore: Firestore, private router: Router) {
     const prodottiRef = collection(this.firestore, 'prodotti');
-    this.prodotti$ = collectionData(prodottiRef, {
-      idField: 'id',
-    }) as Observable<Prodotto[]>;
+    this.prodotti$ = collectionData(prodottiRef, { idField: 'id' }) as Observable<Prodotto[]>;
   }
+
+  ngOnInit(): void {}
 
   // Toggle menu hamburger
-  toggleMobileMenu() {
-    this.mobileMenuOpen = !this.mobileMenuOpen;
-  }
+  toggleMobileMenu() { this.mobileMenuOpen = !this.mobileMenuOpen; }
 
-  // Scroll listener per cambiare classe navbar
+  // Scroll listener per ridurre padding navbar
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 50;
   }
 
-  // Scroll a sezioni interne
+  // Scroll interno per Catalogo o prenota
   scrollToSection(sectionId: string) {
     const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-      this.mobileMenuOpen = false; // chiude menu mobile dopo click
-    }
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    if (this.mobileMenuOpen) this.toggleMobileMenu();
   }
+
+  // Vai alla Home page reale
+  goToHome() {
+    this.router.navigate(['/home']); 
+  }
+
+  goToCatalogo() {
+    this.scrollToSection('catalogo');
+  }
+  prenota() {
+  alert('Hai cliccato su Prenota!');
+  // Qui puoi aggiungere logica reale, es. navigazione a pagina prenotazioni
+}
 }
