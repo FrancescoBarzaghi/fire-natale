@@ -14,7 +14,7 @@
   z-index: 0;
 }
 
-/* Header & Navbar */
+/* --- Header & Navbar --- */
 .header-container, .content-wrapper {
   position: relative;
   z-index: 1;
@@ -46,7 +46,6 @@
   padding: 0 40px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   position: relative;
-  overflow: visible;
 }
 
 /* Logo */
@@ -54,101 +53,99 @@
 .logo-img { height: 55px; width: auto; transition: transform 0.2s; }
 .logo-img:hover { transform: scale(1.05); }
 
-/* Link desktop */
-.nav-links-center { display: flex; gap: 40px; list-style: none; flex:1; justify-content: center; margin:0; padding:0; }
-.nav-link { text-decoration: none; color:#475569; font-weight:500; font-size:0.9rem; transition: color 0.2s; cursor:pointer; }
+/* Link centrali desktop */
+.nav-links-center { 
+  display: flex; 
+  gap: 40px; 
+  list-style: none; 
+  flex:1; 
+  justify-content: center; 
+  margin:0; 
+  padding:0; 
+}
+.nav-link { 
+  text-decoration: none; 
+  color:#475569; 
+  font-weight:500; 
+  font-size:0.9rem; 
+  transition: color 0.2s; 
+  cursor:pointer; 
+}
 .nav-link:hover { color:#000; }
 
-/* Icone e pulsante menu */
-.nav-icons-right { display:flex; align-items:center; gap:25px; flex-shrink:0; color:#475569; }
+/* Icone e pulsante menu (LENTE RIMOSSA) */
+.nav-icons-right { 
+  display:flex; 
+  align-items:center; 
+  gap:25px; 
+  flex-shrink:0; 
+  color:#475569; 
+}
 .nav-icons-right i { font-size:1.2rem; cursor:pointer; transition: color 0.2s; }
 .nav-icons-right i:hover { color:#000; }
-.user-name { font-size:0.9rem; font-weight:600; border-left:1px solid #ddd; padding-left:15px; color:#1a1a1a; }
 
-.hamburger {
-  display: none;
-  background:none; border:none; cursor:pointer; color:#475569; font-size:1.5rem;
-  padding:5px 8px; align-items:center; gap:5px; transition: color 0.2s, transform 0.2s;
+.user-name { 
+  font-size:0.9rem; 
+  font-weight:600; 
+  border-left:1px solid #ddd; 
+  padding-left:15px; 
+  color:#1a1a1a; 
 }
-.hamburger:hover { color:#000; transform:scale(1.1); }
-.hamburger.active { color:#000; }
+
+/* --- Hamburger Menu Modificato --- */
+.hamburger {
+  display: none; /* Nascosto su desktop */
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  color: #475569; 
+  font-size: 1.8rem;
+  padding: 5px;
+  z-index: 2000; /* Sopra l'overlay mobile */
+  transition: transform 0.2s;
+}
+.hamburger:hover { transform: scale(1.1); }
 
 /* Menu mobile dropdown */
 .mobile-nav-links {
   display: none;
   flex-direction: column;
-  gap:15px;
-  position:absolute;
-  top:100%;
-  right:0;
-  background:#f8f9ff;
-  border-radius:0 0 10px 10px;
-  padding:15px 20px;
-  min-width:220px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.15);
-  z-index:1300;
-  animation: slideDown 0.3s ease-out;
+  gap: 15px;
+  position: absolute;
+  top: 85px;
+  right: 0;
+  background: #f8f9ff;
+  border-radius: 15px;
+  padding: 20px;
+  min-width: 220px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  z-index: 1300;
 }
 
-.mobile-nav-links.active { display:flex; }
-.mobile-nav-links li { list-style:none; }
-.mobile-nav-links .nav-link { padding:10px 0; }
+.mobile-nav-links.active { display: flex; }
+.mobile-nav-links li { list-style: none; }
+.mobile-nav-links .nav-link { padding: 10px 0; display: block; }
 
-/* Overlay */
+/* Overlay Mobile */
 .mobile-overlay {
   position: fixed;
-  top:0; left:0; width:100%; height:100%;
+  top: 0; left: 0; width: 100%; height: 100%;
   background: rgba(0,0,0,0.4);
-  z-index:1200;
+  z-index: 1200;
 }
 
-@keyframes slideDown { from {opacity:0; transform:translateY(-10px);} to {opacity:1; transform:translateY(0);} }
+/* --- Contenuto Principale --- */
+.content-wrapper { padding-top: 120px; }
 
-/* Contenuto principale */
-.content-wrapper { padding-top:120px; }
-
-/* --- Responsive --- */
-@media screen and (max-width: 1024px) {
-  .floating-nav { padding:0 25px; }
-  .nav-links-center { gap:25px; }
-  .nav-icons-right { gap:20px; }
-  .user-name { display:none; }
-}
-
-@media screen and (max-width:768px) {
-  .header-container { padding:12px 10px; }
-  .floating-nav { min-height:60px; padding:12px 20px; border-radius:10px; height:auto; }
-  .navbar-brand-container { flex:1; }
-  .logo-img { height:45px; }
-  .nav-links-center { display:none; }
-  .hamburger { display:flex; }
-  .nav-icons-right { gap:15px; }
-  .nav-icons-right i { font-size:1rem; }
-  .mobile-nav-links { right:20px; margin-top:10px; min-width:220px; }
-  .content-wrapper { padding-top:100px; }
-}
-
-@media screen and (max-width:480px) {
-  .header-container { padding:8px 8px; }
-  .floating-nav { padding:10px 15px; border-radius:10px; }
-  .logo-img { height:40px; }
-  .nav-icons-right { gap:12px; }
-  .nav-icons-right i { font-size:0.95rem; }
-  .hamburger { font-size:1.2rem; }
-  .mobile-nav-links { right:15px; min-width:180px; padding:10px 15px; }
-  .mobile-nav-links .nav-link { font-size:0.85rem; }
-  .content-wrapper { padding-top:90px; }
-}
-
-/* --- Card immagine + testo (quasi a tutta larghezza e leggermente trasparente) --- */
+/* --- SEZIONE 1: INFO-CARD (HERO) --- */
 .info-card {
   display: flex;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.85); /* leggermente trasparente */
+  background-color: rgba(255, 255, 255, 0.85);
   border-radius: 25px;
   padding: 40px;
-  margin: 40px 22px; /* quasi ai bordi, con 10px margine */
-  max-width: calc(100% - 20px); /* quasi tutta la larghezza */
+  margin: 40px 22px;
+  max-width: calc(100% - 44px); 
   min-height: 450px;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
   gap: 30px;
@@ -156,11 +153,7 @@
   flex-wrap: wrap;
 }
 
-.card-image {
-  flex: 1;
-  min-width: 250px;
-}
-
+.card-image { flex: 1; min-width: 250px; }
 .card-image img {
   width: 100%;
   height: 100%;
@@ -169,23 +162,9 @@
   object-fit: cover;
 }
 
-.card-text {
-  flex: 2;
-  min-width: 250px;
-}
-
-.card-text h2 {
-  margin-top: 0;
-  font-size: 2.2rem;
-  color: #1a1a1a;
-}
-
-.card-text p {
-  font-size: 1.1rem;
-  color: #333;
-  line-height: 1.6;
-}
-
+.card-text { flex: 2; min-width: 250px; }
+.card-text h2 { margin-top: 0; font-size: 2.2rem; color: #1a1a1a; }
+.card-text p { font-size: 1.1rem; color: #333; line-height: 1.6; }
 .card-button {
   margin-top: 20px;
   padding: 12px 25px;
@@ -195,62 +174,162 @@
   border-radius: 12px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 1rem;
   transition: background-color 0.3s;
 }
+.card-button:hover { background-color: #000; }
 
-.card-button:hover {
-  background-color: #000;
+/* --- SEZIONE 3: VALUES-CARD --- */
+.values-container-card {
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 25px;
+  padding: 50px 40px;
+  margin: 40px 22px;
+  max-width: calc(100% - 44px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
-/* --- Responsive --- */
+.values-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.value-item { flex: 1; min-width: 280px; text-align: center; padding: 20px; }
+
+/* Icone con Cerchio */
+.value-icon-circle {
+  width: 80px; height: 80px;
+  background-color: #f8f9ff;
+  color: #475569;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 2.2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(71, 85, 105, 0.1);
+}
+
+.value-item:hover .value-icon-circle {
+  background-color: #475569;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+.value-item h3 { font-size: 1.5rem; color: #1a1a1a; margin-bottom: 15px; font-weight: 700; }
+.value-item p { font-size: 1rem; color: #444; line-height: 1.6; margin: 0; }
+
+/* --- RESPONSIVE --- */
 @media screen and (max-width: 1024px) {
-  .info-card {
-    padding: 35px;
-    gap: 25px;
-    min-height: auto;
-  }
+  .floating-nav { padding: 0 25px; }
+  .nav-links-center { gap: 20px; }
 }
 
 @media screen and (max-width: 768px) {
+  .nav-links-center { display: none; }
+  .hamburger { display: flex; }
+  
   .info-card {
     flex-direction: column;
     text-align: center;
+    margin: 20px 15px;
     padding: 30px;
   }
 
-  .card-text {
-    padding-top: 20px;
+  .values-container-card {
+    margin: 20px 15px;
+    padding: 30px 20px;
   }
 
-  .card-text h2 {
-    font-size: 1.8rem;
-  }
-
-  .card-text p {
-    font-size: 1rem;
-  }
-
-  .card-button {
-    padding: 10px 20px;
-  }
+  .values-grid { flex-direction: column; gap: 40px; }
+  .value-item { min-width: 100%; }
 }
 
-@media screen and (max-width: 480px) {
-  .info-card {
-    padding: 20px 10px;
+@keyframes slideDown { 
+  from { opacity: 0; transform: translateY(-10px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+/* --- Footer Full-Width --- */
+.site-footer {
+  background-color: #f8f9ff; /* Sfondo pieno e pulito */
+  width: 100%;
+  padding: 60px 0 30px 0;
+  margin-top: 80px; /* Spazio dalla sezione precedente */
+  position: relative;
+  z-index: 10;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.footer-inner {
+  max-width: 1400px; /* Allineato alla larghezza della navbar */
+  margin: 0 auto;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.footer-brand {
+  margin-bottom: 30px;
+}
+
+.tagline {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #475569;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #000;
+}
+
+.footer-socials {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.footer-socials a {
+  font-size: 1.5rem;
+  color: #475569;
+  transition: transform 0.3s;
+}
+
+.footer-socials a:hover {
+  transform: translateY(-3px);
+  color: #000;
+}
+
+.footer-bottom {
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+/* --- Responsive --- */
+@media screen and (max-width: 768px) {
+  .footer-links {
+    flex-direction: column;
     gap: 20px;
-  }
-
-  .card-image img {
-    max-height: 300px;
-  }
-
-  .card-text h2 {
-    font-size: 1.5rem;
-  }
-
-  .card-text p {
-    font-size: 0.95rem;
   }
 }

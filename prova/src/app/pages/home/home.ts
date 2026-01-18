@@ -1,6 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth-service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth-service';
 
 @Component({
   selector: 'app-home',
@@ -10,42 +11,46 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./home.css'],
 })
 export class Home implements OnInit {
-  // --- Proprietà Utente ---
+
+  // --- Utente ---
   email: string | null = null;
   username: string | null = null;
 
-  // --- Proprietà UI ---
-  isScrolled = false; // Navbar cambia stile allo scroll
-  mobileMenuOpen = false; // Controlla menu a tendina mobile
+  // --- UI ---
+  isScrolled = false;
+  mobileMenuOpen = false;
 
-  constructor(private auth: AuthService) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    // Recupero utente loggato
     this.auth.currentUser$.subscribe(user => {
       this.email = user ? user.email : null;
       this.username = this.email ? this.email.split('@')[0] : null;
     });
   }
 
-  // --- Scroll listener ---
+  toggleMobileMenu() {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+  }
+
+  goToCatalogo() {
+    this.mobileMenuOpen = false;
+    this.router.navigate(['/catalogo']);
+  }
+
   @HostListener('window:scroll', [])
   onWindowScroll() {
     this.isScrolled = window.scrollY > 50;
   }
 
-  // --- Scroll verso sezione ---
   scrollToSection(sectionId: string) {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      // Chiudo menu mobile se aperto
       if (this.mobileMenuOpen) this.toggleMobileMenu();
     }
   }
-
-  // --- Toggle menu mobile ---
-toggleMobileMenu() {
-  this.mobileMenuOpen = !this.mobileMenuOpen;
-}
 }

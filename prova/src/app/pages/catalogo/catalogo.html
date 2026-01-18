@@ -1,0 +1,41 @@
+<h1>Catalogo</h1>
+
+<div class="product-grid"
+     *ngIf="prodotti$ | async as prodotti; else loading">
+
+  <div class="product-card" *ngFor="let prodotto of prodotti">
+    <img
+      [src]="prodotto.immagine"
+      [alt]="prodotto.nome"
+    >
+
+    <h3>{{ prodotto.nome }}</h3>
+    <p>{{ prodotto.prezzo | currency:'EUR' }}</p>
+  </div>
+
+</div>
+
+<ng-template #loading>
+  <p>Caricamento prodotti...</p>
+</ng-template>
+<!-- FOOTER -->
+<footer class="site-footer" id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-text">
+        HOME <span class="fire">ELEMENTS</span>
+      </span>
+      <p class="tagline">L'eccellenza del design, a casa tua.</p>
+    </div>
+
+    <div class="footer-socials">
+      <a href="#"><i class="bi bi-instagram"></i></a>
+      <a href="#"><i class="bi bi-facebook"></i></a>
+      <a href="#"><i class="bi bi-whatsapp"></i></a>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 NataleFire Design. Tutti i diritti riservati.</p>
+    </div>
+  </div>
+</footer>
